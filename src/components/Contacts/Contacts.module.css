@@ -1,0 +1,31 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  height: 48px;
+  font-size: 24px;
+  color: #fff;
+  background-color: rgb(158, 7, 7);
+  border: none;
+  border-radius: 6px;
+  transition: background-color .3s ease, color .3s ease;
+}
+
+.button:hover, 
+.button:focus {
+  color: #010101;
+  background-color: transparent;
+  box-shadow: 2px 2px 5px 0px rgba(66, 37, 37, 0.75);
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.item:not(:last-child) {
+  margin-bottom: 30px;
+}
