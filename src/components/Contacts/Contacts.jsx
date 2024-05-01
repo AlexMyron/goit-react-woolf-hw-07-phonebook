@@ -1,29 +1,31 @@
 import { useSelector, useDispatch } from 'react-redux';
 import classes from './Contacts.module.css';
-import { getContacts, getFilterValue } from '../../redux/selectors';
-import { deleteContact } from '../../redux/contactsSlice';
+import { selectContacts, selectFilter } from '../../redux/selectors';
+import { deleteContact } from '../../redux/operations';
 
 const Contacts = () => {
-  const contacts = useSelector(getContacts);
-  const filterValue = useSelector(getFilterValue);
+  const { items: contacts } = useSelector(selectContacts);
+  const filterValue = useSelector(selectFilter);
   const dispatch = useDispatch();
 
-  const handleFilterContacts = () =>
-    contacts.length
+  const handleFilterContacts = () => {
+    console.log(contacts);
+    return contacts.length
       ? contacts.filter(({ name }) =>
           name.toLowerCase().startsWith(filterValue.toLowerCase())
         )
       : [];
+  };
 
   return (
     <div className={classes.list}>
       <ul>
         {contacts &&
-          handleFilterContacts().map(({ id, name, number }) => (
+          handleFilterContacts().map(({ id, name, phone }) => (
             <li key={id} className={classes.item}>
               <div>
                 <span>{name}</span>:&nbsp;
-                <span>{number}</span>
+                <span>{phone}</span>
               </div>
               <button
                 className={classes.button}

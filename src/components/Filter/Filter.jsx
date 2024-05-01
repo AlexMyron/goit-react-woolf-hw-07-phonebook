@@ -1,14 +1,14 @@
 import Input from 'components/Input';
 import classes from './Filter.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilterValue } from '../../redux/selectors';
+import { selectContacts, selectFilter } from '../../redux/selectors';
 import { changeFilter, clearFilter } from '../../redux/filterSlice';
 
 const Filter = () => {
-  const contacts = useSelector(getContacts);
-  const filterValue = useSelector(getFilterValue);
+  const { items: contacts } = useSelector(selectContacts);
+  const filterValue = useSelector(selectFilter);
   const dispatch = useDispatch();
-  const isContactExists = contacts.length
+  const isContacts = contacts.length;
 
   const handleFilterChange = ({ target: { value } }) =>
     dispatch(changeFilter(value));
@@ -22,14 +22,14 @@ const Filter = () => {
         type="text"
         name="filter"
         value={filterValue}
-        disabled={!isContactExists}
+        disabled={!isContacts}
         className={classes.input}
         onChange={handleFilterChange}
         handleClick={handleFilterClear}
         isShowButton={filterValue}
       />
 
-      {!isContactExists && <p className={classes.message}>No Contacts</p>}
+      {!isContacts && <p className={classes.message}>No Contacts</p>}
     </>
   );
 };

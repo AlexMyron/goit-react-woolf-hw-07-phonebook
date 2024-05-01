@@ -1,22 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { nanoid } from 'nanoid';
-import { addContact } from '../../redux/contactsSlice';
-import { getContacts } from '../../redux/selectors';
+import { addContact } from '../../redux/operations';
+import { selectContacts } from '../../redux/selectors';
 
 import classes from './Form.module.css';
 
 const Form = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const { items: contacts } = useSelector(selectContacts);
   const handleFormSubmit = e => {
     e.preventDefault();
     const {
       name: { value: name },
-      number: { value: number },
+      number: { value: phone },
     } = e.target.elements;
 
-    if (!name || !number) return;
+    if (!name || !phone) return;
     const isContactExists = contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
@@ -25,8 +24,7 @@ const Form = () => {
       : dispatch(
           addContact({
             name,
-            number,
-            id: nanoid(),
+            phone,
           })
         );
 

@@ -19,6 +19,12 @@
   box-shadow: 2px 2px 5px 0px rgba(66, 37, 37, 0.75);
 }
 
+.list {
+  max-height: 438px;
+  overflow: auto;
+  /* border: 1px solid #010101; */
+}
+
 .item {
   display: flex;
   justify-content: space-between;

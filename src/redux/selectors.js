@@ -1,3 +1,7 @@
-export const getContacts = ({ contacts }) => contacts;
+export const selectContacts = ({ contacts }) => contacts;
 
-export const getFilterValue = ({ filter }) => filter;
+export const selectFilter = ({ filter }) => filter;
+
+export const selectIsLoading = ({ contacts: { isLoading } }) => isLoading;
+
+export const selectError = ({ contacts: { error } }) => error;
